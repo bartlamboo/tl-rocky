@@ -1,0 +1,27 @@
+---
+services:
+  tl-rocky:
+    privileged: true
+    container_name: tl-rocky
+    image: tl-rocky:latest
+    volumes:
+      - type: tmpfs
+        target: /run
+      - type: tmpfs
+        target: /run/lock
+      - /sys/fs/cgroup/:/sys/fs/cgroup
+      - /certs/yourdomain.com.crt:/opt/thinlinc/etc/tlwebaccess/server.crt
+      - /certs/yourdomain.com.key:/opt/thinlinc/etc/tlwebaccess/server.key
+    restart: unless-stopped
+    cgroup: host
+    ports:
+      - 300:300/tcp
+    post_start:
+      - command: sleep 3
+        user: root
+      - command: /sbin/tlcfg add-user myuser mypassword
+        user: root
+      - command: /sbin/tlcfg set-hostname thinlinc.yourdomain.com
+        user: root
+      - command: /sbin/usermod -a -G wheel myuser
+        user: root
