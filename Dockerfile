@@ -5,7 +5,9 @@ RUN systemctl mask dev-hugepages.mount sys-fs-fuse-connections.mount sys-kernel-
 VOLUME [ "/sys/fs/cgroup" ]
 RUN dnf update -y
 RUN dnf install epel-release -y
-RUN dnf install wget git unzip vim-enhanced htop screen openssh-server sudo dialog curl lsb-release joe man-db net-tools dbus-x11 -y --allowerasing
+RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc
+RUN curl https://packages.microsoft.com/yumrepos/vscode/config.repo > /etc/yum.repos.d/vscode.repo
+RUN dnf install wget git unzip vim-enhanced htop screen openssh-server sudo dialog curl lsb-release joe man-db net-tools dbus-x11 firefox code -y --allowerasing
 RUN dnf groupinstall "GNOME" -y --allowerasing
 STOPSIGNAL SIGRTMIN+3
 RUN curl https://www.cendio.com/downloads/server/tl-4.19.0-server.zip > tl.zip; 

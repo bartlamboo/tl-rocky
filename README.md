@@ -28,6 +28,13 @@ docker build --tag tl-rocky:latest .
 docker run -d --privileged --name tl-rocky --publish 300:300 --cgroupns=host --tmpfs /tmp --tmpfs /run  -v /sys/fs/cgroup:/sys/fs/cgroup tl-rocky:latest
 ```
 
+Alternatively, you can also use docker compose to start the container.
+An example docker compose script is also in the repository.
+
+```console
+docker compose -f thinlinc-rocky.yaml up -d
+```
+
 ## Configuration
 
 Before you can login, the ThinLinc server requires some minimal configuration
@@ -41,6 +48,8 @@ docker exec tl-rocky tlcfg add-user myuser mypassword
 Seeing that this thinlinc instance is made available over the internet via
 https you might your own certificates. (self signed are available by
 default)
+You can also use the volume mounts for these certificates as can be seen by
+the example in the docker compose file. (thinlinc-rocky.yaml)
 
 ```console
 docker cp mydomain.com.crt tl-rocky:/opt/thinlinc/etc/tlwebaccess/server.crt
