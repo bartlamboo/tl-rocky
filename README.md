@@ -38,6 +38,15 @@ First add a user account. Either with a password
 docker exec tl-rocky tlcfg add-user myuser mypassword
 ```
 
+Seeing that this thinlinc instance is made available over the internet via
+https you might your own certificates. (self signed are available by
+default)
+
+```
+docker cp mydomain.com.crt tl-rocky:/opt/thinlinc/etc/tlwebaccess/server.crt
+docker cp mydomain.com.key tl-rocky:/opt/thinlinc/etc/tlwebaccess/server.key
+```
+
 Second, let the ThinLinc server know under what hostname it is reachable
 from the client.  This is a very important step, as ThinLinc uses a
 load-balancing system where it will tell your client to connect to the the
@@ -50,12 +59,6 @@ machine to make your demo instance available on your network.
 ```console
 docker exec tl-rocky tlcfg set-hostname 127.0.0.1
 ```
-
-Now all is ready for accessing the ThinLinc server using the ThinLinc client. Make sure to
-configure the ThinLinc client to use the right port number.
-
-If you have not yet downloaded a ThinLinc client, you can download it
-[here](https://www.cendio.com/thinlinc/download). 
 
 ## Cleanup
 
