@@ -85,14 +85,4 @@ docker exec -ti tl-rocky bash
 If you have questions in connection with ThinLinc in general or
 thinlinc-demo-in-a-docker head over to the [ThinLinc Community](https://community.thinlinc.com/tag/docker).
 
-## Build
-
-If you want to tinker with thinlinc, and modify it ... fork this repo and
-let me have a pull request. To get started, use the following command to
-rebuild the docker image locally.
-
-```console
-docker build --tag tl-ubuntu:latest .
-```
-
 *EOF*
