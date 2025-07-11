@@ -42,7 +42,7 @@ Seeing that this thinlinc instance is made available over the internet via
 https you might your own certificates. (self signed are available by
 default)
 
-```
+```console
 docker cp mydomain.com.crt tl-rocky:/opt/thinlinc/etc/tlwebaccess/server.crt
 docker cp mydomain.com.key tl-rocky:/opt/thinlinc/etc/tlwebaccess/server.key
 ```
